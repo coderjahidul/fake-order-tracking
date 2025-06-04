@@ -58,6 +58,25 @@ add_action('admin_enqueue_scripts', function($hook) {
 
 require_once CDC_PLUGIN_DIR . '/includes/class-cdc-loader.php';
 
+// Disable Cash on delivery payment method
+add_filter('woocommerce_available_payment_gateways', 'conditionally_enable_cod');
+
+function conditionally_enable_cod($available_gateways) {
+    if (is_admin()) return $available_gateways;
+
+    if (WC()->session) {
+        $dsr_percentage = WC()->session->get('dsr_percentage');
+
+        if ($dsr_percentage !== null && $dsr_percentage <= 50) {
+            // Disable COD
+            unset($available_gateways['cod']);
+        }
+    }
+
+    return $available_gateways;
+}
+
+
 
 function cdc_run_plugin() {
     $plugin = new CDC_Loader();

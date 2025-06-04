@@ -21,6 +21,9 @@ class CDC_AJAX {
         $dsr_percentage = $total_parcels > 0 ? ($total_delivered / $total_parcels) * 100 : 0;
         $dsr_percentage = floatval(number_format($dsr_percentage, 2));
 
+        // Store it in session for checkout use
+        WC()->session->set('dsr_percentage', $dsr_percentage);
+
         wp_send_json_success([
             'dsr' => $dsr_percentage
         ]);

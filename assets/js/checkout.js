@@ -15,6 +15,8 @@ jQuery(function($) {
 
                     if (dsr > 50) {
                         $('#payment .payment_method_cod').show();
+                    }else{
+                        $('#payment .payment_method_cod').hide();
                     }
                 }
             }
