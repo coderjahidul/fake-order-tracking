@@ -31,7 +31,13 @@ class CDC_Settings {
                 <table class="form-table">
                     <tr valign="top">
                         <th scope="row">API URL</th>
-                        <td><input type="text" name="cdc_api_url" value="<?php echo esc_attr(get_option('cdc_api_url', 'https://fraudchecker.link/api/v1/qc/')); ?>" size="50"/></td>
+                        <td>
+                            <input type="text" name="cdc_api_url" value="<?php echo esc_attr(get_option('cdc_api_url', 'https://fraudchecker.link/api/v1/qc/')); ?>" size="50"/>
+                            <!-- fraudchecker.link -->
+                            <p>
+                                🔗 Visit <a href="https://fraudchecker.link" target="_blank" style="text-decoration: none; color: #2271b1; font-weight: 500;">fraudchecker.link</a> to get your API key.
+                            </p>
+                        </td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">API Key</th>
