@@ -6,7 +6,7 @@ class CDC_Order_Meta {
 
     public function show_dsr_data( $order ) {
         echo '<div class="order_data_column dsr-metrics">';
-        echo '<h3>Delivery Success Rate</h3>';
+        echo '<h3>Customer Delivery Success Rate</h3>';
         echo '<div class="dsr-grid">';
         echo '<p><strong>Mobile:</strong> ' . esc_html( $order->get_meta( '_dsr_mobile_number' ) ) . '</p>';
         echo '<p><strong>Total Parcels:</strong> ' . esc_html( $order->get_meta( '_dsr_total_parcels' ) ) . '</p>';

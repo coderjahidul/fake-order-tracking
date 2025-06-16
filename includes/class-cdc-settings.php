@@ -7,10 +7,10 @@ class CDC_Settings {
 
     public function add_settings_page() {
         add_options_page(
-            'Customer DSR Settings',
-            'Customer DSR Checker',
+            'Fake Order Tracking Settings',
+            'Fake Order Tracking',
             'manage_options',
-            'customer-dsr-checker',
+            'fake-order-tracking',
             [$this, 'render_settings_page']
         );
     }
@@ -23,7 +23,7 @@ class CDC_Settings {
     public function render_settings_page() {
         ?>
         <div class="wrap">
-            <h1>Customer DSR API Configure</h1>
+            <h1>Fake Order Tracking Configure</h1>
             <form method="post" action="options.php">
                 <?php settings_fields('cdc_settings_group'); ?>
                 <?php do_settings_sections('cdc_settings_group'); 
