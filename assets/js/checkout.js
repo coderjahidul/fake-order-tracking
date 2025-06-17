@@ -36,5 +36,6 @@ jQuery(function($) {
         if (phone.length === 11) {
             checkDSR(phone);
         }
-    });  
+    });
 });
+

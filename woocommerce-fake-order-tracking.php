@@ -43,6 +43,7 @@ add_action('wp_enqueue_scripts', function() {
     }
 });
 
+// Enqueue admin CSS
 add_action('admin_enqueue_scripts', function($hook) {
     // Optionally limit to WooCommerce order page
     // if ( 'post.php' === $hook && isset($_GET['post']) && get_post_type($_GET['post']) === 'shop_order' ) {
@@ -53,6 +54,17 @@ add_action('admin_enqueue_scripts', function($hook) {
             '1.0'
         );
     // }
+});
+
+// Enqueue admin JS
+add_action('admin_enqueue_scripts', function($hook) {
+        wp_enqueue_script(
+            'cdc-admin-script',
+            plugin_dir_url(__FILE__) . 'assets/js/admin-script.js',
+            ['jquery'],
+            '1.0',
+            true
+        );
 });
 
 
@@ -74,6 +86,32 @@ function conditionally_enable_cod($available_gateways) {
     }
 
     return $available_gateways;
+}
+// Function to append data to a log file
+function put_program_logs( $data ) {
+
+    // Ensure the directory for logs exists
+    $directory = __DIR__ . '/program_logs/';
+    if ( ! file_exists( $directory ) ) {
+        // Use wp_mkdir_p instead of mkdir
+        if ( ! wp_mkdir_p( $directory ) ) {
+            return "Failed to create directory.";
+        }
+    }
+
+    // Construct the log file path
+    $file_name = $directory . 'program_logs.log';
+
+    // Append the current datetime to the log entry
+    $current_datetime = gmdate( 'Y-m-d H:i:s' ); // Use gmdate instead of date
+    $data             = $data . ' - ' . $current_datetime;
+
+    // Write the log entry to the file
+    if ( file_put_contents( $file_name, $data . "\n\n", FILE_APPEND | LOCK_EX ) !== false ) {
+        return "Data appended to file successfully.";
+    } else {
+        return "Failed to append data to file.";
+    }
 }
 
 
