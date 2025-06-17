@@ -16,9 +16,15 @@ class CDC_Settings {
     }
 
     public function register_settings() {
-        register_setting('cdc_settings_group', 'cdc_api_url');
-        register_setting('cdc_settings_group', 'cdc_api_key');
+        register_setting('cdc_settings_group', 'cdc_api_url', [
+            'sanitize_callback' => 'esc_url_raw',
+        ]);
+
+        register_setting('cdc_settings_group', 'cdc_api_key', [
+            'sanitize_callback' => 'sanitize_text_field',
+        ]);
     }
+
 
     public function render_settings_page() {
         ?>
