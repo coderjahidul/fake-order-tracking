@@ -45,26 +45,23 @@ add_action('wp_enqueue_scripts', function() {
 
 // Enqueue admin CSS
 add_action('admin_enqueue_scripts', function($hook) {
-    // Optionally limit to WooCommerce order page
-    // if ( 'post.php' === $hook && isset($_GET['post']) && get_post_type($_GET['post']) === 'shop_order' ) {
-        wp_enqueue_style(
-            'cdc-admin-style',
-            plugin_dir_url(__FILE__) . 'assets/css/admin-style.css',
-            [],
-            '1.0'
-        );
-    // }
+    wp_enqueue_style(
+        'cdc-admin-style',
+        plugin_dir_url(__FILE__) . 'assets/css/admin-style.css',
+        [],
+        '1.0'
+    );
 });
 
 // Enqueue admin JS
 add_action('admin_enqueue_scripts', function($hook) {
-        wp_enqueue_script(
-            'cdc-admin-script',
-            plugin_dir_url(__FILE__) . 'assets/js/admin-script.js',
-            ['jquery'],
-            '1.0',
-            true
-        );
+    wp_enqueue_script(
+        'cdc-admin-script',
+        plugin_dir_url(__FILE__) . 'assets/js/admin-script.js',
+        ['jquery'],
+        '1.0',
+        true
+    );
 });
 
 

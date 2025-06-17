@@ -48,6 +48,13 @@ class CDC_AJAX {
             'billing'
         ) );
 
+        // Remove non-numeric characters
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        // Remove +88 or 880 from beginning
+        $phone = str_replace(['+88', '88'], '', $phone);
+
+        // Check if phone number is empty
         if ( empty($phone) ) {
             wp_send_json_error(['message' => 'Phone number not found']);
         }
@@ -56,6 +63,7 @@ class CDC_AJAX {
         $dsr = new CDC_API();
         $dsr_response = $dsr->check_dsr($phone);
 
+        // Check if DSR response is valid
         if ( is_array($dsr_response) && isset($dsr_response['mobile_number']) ) {
             $order = wc_get_order($order_id);
 
@@ -70,6 +78,7 @@ class CDC_AJAX {
             $order->update_meta_data('_dsr_total_cancel', $dsr_response['total_cancel']);
             $order->save(); // Don't forget this!
 
+            // Send success response
             wp_send_json_success([
                 'message' => 'DSR updated successfully',
                 'phone' => $dsr_response['mobile_number'], 
@@ -78,8 +87,10 @@ class CDC_AJAX {
                 'total_cancel' => $dsr_response['total_cancel']
             ]);
         }elseif (is_array($dsr_response) && isset($dsr_response['status']) && isset($dsr_response['message'])) {
+            // Send error response
             wp_send_json_error(['message' => $dsr_response['message']]);
         }else {
+            // Send error response
             wp_send_json_error(['message' => 'Something went wrong. Please try again.']);
         }
     }
