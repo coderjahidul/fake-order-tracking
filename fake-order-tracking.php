@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name: WooCommerce Fake Order Tracking
- * Plugin URI: https://github.com/coderjahidul/woocommerce-fake-order-tracking
+ * Plugin Name: Fake Order Tracking
+ * Plugin URI: https://github.com/coderjahidul/fake-order-tracking
  * Description: Checks DSR and suggests payment method. Saves DSR report in admin order page.
  * Version: 1.0.0
  * Author: MD: Jahidul Islam Sabuz
  * Author URI: https://github.com/coderjahidul
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: woocommerce-fake-order-tracking
+ * Text Domain: fake-order-tracking
  * 
- * @package WooCommerce Fake Order Tracking
+ * @package Fake Order Tracking
  * @version 1.0.0
  * @since 1.0.0
  * 
