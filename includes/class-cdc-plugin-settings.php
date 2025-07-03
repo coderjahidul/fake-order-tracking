@@ -1,5 +1,5 @@
 <?php 
-class CDC_Settings {
+class CDC_Plugin_Settings {
     public function __construct() {
         add_action('admin_menu', [$this, 'add_settings_page']);
         add_action('admin_init', [$this, 'register_settings']);
@@ -16,13 +16,23 @@ class CDC_Settings {
     }
 
     public function register_settings() {
-        register_setting('cdc_settings_group', 'cdc_api_url', [
-            'sanitize_callback' => 'esc_url_raw',
-        ]);
+        register_setting(
+            'cdc_settings_group',
+            'cdc_api_url',
+            [
+                'sanitize_callback' => 'esc_url_raw',
+                'default' => 'https://fraudchecker.link/api/v1/qc/'
+            ]
+        );
 
-        register_setting('cdc_settings_group', 'cdc_api_key', [
-            'sanitize_callback' => 'sanitize_text_field',
-        ]);
+        register_setting(
+            'cdc_settings_group',
+            'cdc_api_key',
+            [
+                'sanitize_callback' => 'sanitize_text_field',
+                'default' => ''
+            ]
+        );
     }
 
 

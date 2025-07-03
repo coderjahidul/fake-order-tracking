@@ -5,7 +5,7 @@ jQuery(function($) {
             type: 'POST',
             url: cdc_ajax_object.ajax_url,
             data: {
-                action: 'check_dsr_score',
+                action: 'cdc_dsr_get_score',
                 phone: phone,
                 nonce: cdc_ajax_object.nonce
             },

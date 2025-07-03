@@ -21,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-define( 'CDC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'CDC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define('CDC_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__)); 
+define('CDC_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));   
 
 // Enqueue CSS and JS only on the checkout page
 add_action('wp_enqueue_scripts', function() {
@@ -72,7 +72,7 @@ add_action('admin_enqueue_scripts', function($hook) {
 });
 
 
-require_once CDC_PLUGIN_DIR . '/includes/class-cdc-loader.php';
+require_once CDC_PLUGIN_DIR . '/includes/class-cdc-plugin-loader.php';
 
 // Disable Cash on delivery payment method
 add_filter('woocommerce_available_payment_gateways', 'conditionally_enable_cod');
@@ -92,12 +92,12 @@ function conditionally_enable_cod($available_gateways) {
     return $available_gateways;
 }
 
-function cdc_run_plugin() {
-    $plugin = new CDC_Loader();
-    $plugin->run();
+function cdc_plugin_run() {
+    $plugin = new CDC_Plugin_Loader();
+    $plugin->fake_order_tracking_run();
 }
 
-if ( class_exists( 'CDC_Loader' ) ) {
-    cdc_run_plugin();
+if (class_exists('CDC_Plugin_Loader')) {
+    cdc_plugin_run();
 }
 

@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
             url: ajaxurl,
             type: 'POST',
             data: {
-                action: 'check_dsr_again',
+                action: 'cdc_dsr_refresh',
                 order_id: orderId,
                 nonce: cdc_ajax_object.nonce
             },

@@ -1,5 +1,5 @@
 <?php 
-class CDC_Order_Meta {
+class CDC_Plugin_Order_Meta {
     public function __construct() {
         add_action( 'woocommerce_admin_order_data_after_order_details', [ $this, 'show_dsr_data' ] );
     }

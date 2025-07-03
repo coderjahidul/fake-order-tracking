@@ -1,5 +1,5 @@
 <?php 
-class CDC_Checkout {
+class CDC_Plugin_Checkout {
     public function __construct() {
         // add_action('woocommerce_available_payment_gateways', [$this, 'filter_payment_gateways']);
         add_action('woocommerce_checkout_create_order', [$this, 'attach_dsr_data_to_order'], 20, 2);
@@ -14,7 +14,7 @@ class CDC_Checkout {
         if (!$billing_phone) return $available_gateways;
 
         // Call API
-        $dsr = new CDC_API();
+        $dsr = new CDC_Plugin_API();
         $dsr_response = $dsr->check_dsr($billing_phone);
         
         // Get DSR Values
@@ -41,7 +41,7 @@ class CDC_Checkout {
             $phone = sanitize_text_field($_POST['billing_phone']);
 
             // Call API
-            $dsr = new CDC_API();
+            $dsr = new CDC_Plugin_API();
             $dsr_response = $dsr->check_dsr($phone);
             
             if (is_array($dsr_response) && isset($dsr_response['mobile_number'])){

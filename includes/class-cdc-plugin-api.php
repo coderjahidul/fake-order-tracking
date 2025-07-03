@@ -1,5 +1,5 @@
 <?php
-class CDC_API {
+class CDC_Plugin_API {
     public function check_dsr($customer_phone) {
         $api_url = get_option('cdc_api_url', 'https://fraudchecker.link/api/v1/qc/');
         $api_key = get_option('cdc_api_key', '');

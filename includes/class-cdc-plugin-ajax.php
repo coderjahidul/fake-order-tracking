@@ -1,14 +1,16 @@
 <?php
-class CDC_AJAX {
+class CDC_Plugin_AJAX {
     public function __construct() {
-        add_action('wp_ajax_check_dsr_score', [$this, 'check_dsr_score']);
-        add_action('wp_ajax_nopriv_check_dsr_score', [$this, 'check_dsr_score']);
+        // DSR Score Check
+        add_action('wp_ajax_cdc_dsr_get_score', [$this, 'handle_dsr_score_request']);
+        add_action('wp_ajax_nopriv_cdc_dsr_get_score', [$this, 'handle_dsr_score_request']);
 
-        add_action('wp_ajax_check_dsr_again', [$this, 'check_dsr_again']);
-        add_action('wp_ajax_nopriv_check_dsr_again', [$this, 'check_dsr_again']);
+        // DSR Refresh Check
+        add_action('wp_ajax_cdc_dsr_refresh', [$this, 'handle_dsr_refresh_request']);
+        add_action('wp_ajax_nopriv_cdc_dsr_refresh', [$this, 'handle_dsr_refresh_request']);
     }
 
-    public function check_dsr_score() {
+    public function handle_dsr_score_request() {
 
         // Verify AJAX nonce (dies with 403 if not valid)
         check_ajax_referer('cdc_ajax_nonce', 'nonce');
@@ -19,7 +21,7 @@ class CDC_AJAX {
 
         $phone = sanitize_text_field($_POST['phone']);
 
-        $dsr = new CDC_API();
+        $dsr = new CDC_Plugin_API();
         $dsr_response = $dsr->check_dsr($phone);
 
         $total_parcels = isset($dsr_response['total_parcels']) ? (int) $dsr_response['total_parcels'] : 0;
@@ -37,7 +39,7 @@ class CDC_AJAX {
     }
 
     // Check DSR Again
-    public function check_dsr_again() {
+    public function handle_dsr_refresh_request() {
         error_log('check_dsr_again function called'); // Debug 5
 
         // Verify AJAX nonce (dies with 403 if not valid)
@@ -73,7 +75,7 @@ class CDC_AJAX {
         }
 
          // Call DSR API
-        $dsr = new CDC_API();
+        $dsr = new CDC_Plugin_API();
         $dsr_response = $dsr->check_dsr($phone);
 
         // Check if DSR response is valid
