@@ -72,7 +72,7 @@ add_action('admin_enqueue_scripts', function($hook) {
 });
 
 
-require_once CDC_PLUGIN_DIR . '/includes/class-cdc-plugin-loader.php';
+require_once CDC_PLUGIN_DIR_PATH . '/includes/class-cdc-plugin-loader.php';
 
 // Disable Cash on delivery payment method
 add_filter('woocommerce_available_payment_gateways', 'conditionally_enable_cod');
