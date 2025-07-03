@@ -10,7 +10,8 @@ jQuery(document).ready(function($) {
             type: 'POST',
             data: {
                 action: 'check_dsr_again',
-                order_id: orderId
+                order_id: orderId,
+                nonce: cdc_ajax_object.nonce
             },
             success: function(response) {
                 if(response.success) {

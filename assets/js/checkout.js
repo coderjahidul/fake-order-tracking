@@ -6,7 +6,8 @@ jQuery(function($) {
             url: cdc_ajax_object.ajax_url,
             data: {
                 action: 'check_dsr_score',
-                phone: phone
+                phone: phone,
+                nonce: cdc_ajax_object.nonce
             },
             success: function(response) {
                 if (response.success && response.data.dsr !== undefined) {

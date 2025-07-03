@@ -39,6 +39,7 @@ add_action('wp_enqueue_scripts', function() {
         // Localize script for AJAX
         wp_localize_script('cdc-checkout', 'cdc_ajax_object', [
             'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('cdc_ajax_nonce')
         ]);
     }
 });
@@ -62,6 +63,12 @@ add_action('admin_enqueue_scripts', function($hook) {
         '1.0',
         true
     );
+
+    // Localize script for AJAX
+    wp_localize_script('cdc-admin-script', 'cdc_ajax_object', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('cdc_ajax_nonce')
+    ]);
 });
 
 

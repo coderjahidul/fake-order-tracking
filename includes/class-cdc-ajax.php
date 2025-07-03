@@ -9,6 +9,10 @@ class CDC_AJAX {
     }
 
     public function check_dsr_score() {
+
+        // Verify AJAX nonce (dies with 403 if not valid)
+        check_ajax_referer('cdc_ajax_nonce', 'nonce');
+
         if (!isset($_POST['phone'])) {
             wp_send_json_error(['message' => 'Phone number missing']);
         }
@@ -34,7 +38,16 @@ class CDC_AJAX {
 
     // Check DSR Again
     public function check_dsr_again() {
+        error_log('check_dsr_again function called'); // Debug 5
+
+        // Verify AJAX nonce (dies with 403 if not valid)
+        check_ajax_referer('cdc_ajax_nonce', 'nonce');
+
+        error_log('Nonce verified'); // Debug 6
+
         $order_id = intval($_POST['order_id'] ?? 0);
+         error_log('Order ID received: ' . $order_id); // Debug 7
+         
         if(!$order_id) {
             wp_send_json_error(['message' => 'Order ID missing']);
         }
