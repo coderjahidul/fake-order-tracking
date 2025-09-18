@@ -24,6 +24,8 @@ class CDC_Plugin_AJAX {
         $dsr = new CDC_Plugin_API();
         $dsr_response = $dsr->check_dsr($phone);
 
+        put_program_logs(json_encode($dsr_response));
+
         $total_parcels = isset($dsr_response['total_parcels']) ? (int) $dsr_response['total_parcels'] : 0;
         $total_delivered = isset($dsr_response['total_delivered']) ? (int) $dsr_response['total_delivered'] : 0;
 
@@ -77,6 +79,8 @@ class CDC_Plugin_AJAX {
          // Call DSR API
         $dsr = new CDC_Plugin_API();
         $dsr_response = $dsr->check_dsr($phone);
+
+        put_program_logs(json_encode($dsr_response));
 
         // Check if DSR response is valid
         if ( is_array($dsr_response) && isset($dsr_response['mobile_number']) ) {
