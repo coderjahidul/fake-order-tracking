@@ -101,32 +101,3 @@ if (class_exists('CDC_Plugin_Loader')) {
     cdc_plugin_run();
 }
 
-// Function to append data to a log file
-function put_program_logs( $data ) {
-    // Ensure the directory for logs exists
-    $directory = __DIR__ . '/program_logs/';
-    if ( ! file_exists( $directory ) ) {
-        // Use wp_mkdir_p to create directories recursively
-        if ( ! wp_mkdir_p( $directory ) ) {
-            return "Failed to create directory: $directory";
-        }
-    }
-
-    // Construct the log file path
-    $file_name = $directory . 'program_logs.log';
-
-    // Append the current datetime to the log entry
-    $current_datetime = gmdate( 'Y-m-d H:i:s' ); // GMT datetime
-    $log_entry        = sprintf("[%s] %s", $current_datetime, $data);
-
-    // Write the log entry to the file safely
-    $result = file_put_contents( $file_name, $log_entry . PHP_EOL, FILE_APPEND | LOCK_EX );
-
-    if ( $result !== false ) {
-        return "Data appended to file successfully.";
-    } else {
-        return "Failed to append data to file.";
-    }
-}
-
-

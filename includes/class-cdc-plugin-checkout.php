@@ -16,7 +16,6 @@ class CDC_Plugin_Checkout {
         // Call API
         $dsr = new CDC_Plugin_API();
         $dsr_response = $dsr->check_dsr($billing_phone);
-        put_program_logs(json_encode($dsr_response));
         
         // Get DSR Values
         $total_parcels = isset($dsr_response['total_parcels']) ? (int) $dsr_response['total_parcels'] : 0;
@@ -44,7 +43,6 @@ class CDC_Plugin_Checkout {
             // Call API
             $dsr = new CDC_Plugin_API();
             $dsr_response = $dsr->check_dsr($phone);
-            put_program_logs(json_encode($dsr_response));
             
             if (is_array($dsr_response) && isset($dsr_response['mobile_number'])){
                 // Update WooCommerce order meta
