@@ -18,6 +18,9 @@ The plugin requires credentials for the following couriers:
 - **Steadfast Courier**: Email and Password.
 - **RedX Courier**: Email and Access Token.
 
+**Fraud Prevention Settings**:
+- **DSR Threshold**: Set the percentage (default 50%) below which Cash on Delivery (COD) will be disabled.
+
 ## 📖 Full Documentation
 For detailed guides on setup, logic, and developer hooks, please refer to [documentation.md](documentation.md).
 

@@ -7,7 +7,7 @@
 
 ## Features
 - **Real-time DSR Validation**: Automatically fetches delivery history from major couriers during checkout.
-- **Dynamic Payment Control**: Disables Cash on Delivery (COD) for customers with a low DSR (default is ≤ 50%).
+- **Dynamic Payment Control**: Disables Cash on Delivery (COD) for customers with a low DSR (Threshold is configurable in settings, default ≤ 50%).
 - **Multi-Courier Support**: Integrates with **Steadfast Courier** and **RedX** for comprehensive coverage.
 - **Admin Insights**: View detailed DSR logs directly within the WooCommerce Order Edit screen.
 - **Manual Refresh**: Admins can manually refresh DSR data for any order to get the latest status.
@@ -45,7 +45,7 @@ To fetch DSR data, you need to provide credentials for the supported couriers:
 2. The plugin queries the Steadfast and RedX APIs to retrieve the customer's delivery history (total parcels vs. delivered parcels).
 3. The **DSR Percentage** is calculated as:  
    `(Total Delivered / Total Parcels) * 100`
-4. If the DSR is **50% or lower**, the **Cash on Delivery (COD)** payment method is automatically hidden to ensure payment security.
+4. If the DSR is **at or below your configured threshold** (configurable in Settings), the **Cash on Delivery (COD)** payment method is automatically hidden to ensure payment security.
 
 ### In Admin
 1. For every order created, the DSR data (Total Parcels, Delivered, Cancelled) is saved in the order metadata.
