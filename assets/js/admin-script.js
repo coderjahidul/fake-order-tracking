@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
         const button = $(this);
         const orderId = button.data('order-id');
         button.text('Checking...');
-        console.log(orderId);
+        // console.log(orderId);
 
         $.ajax({
             url: ajaxurl,

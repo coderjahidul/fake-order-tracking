@@ -1,6 +1,6 @@
 jQuery(function($) {
     function checkDSR(phone) {
-        console.log('Checking DSR for phone:', phone);
+        // console.log('Checking DSR for phone:', phone);
         $.ajax({
             type: 'POST',
             url: cdc_ajax_object.ajax_url,
@@ -12,15 +12,7 @@ jQuery(function($) {
             success: function(response) {
                 if (response.success && response.data.dsr !== undefined) {
                     const dsr = parseFloat(response.data.dsr);
-                    console.log('DSR:', dsr);
-
-                    // if (dsr > 50) {
-                    //     // $('#payment .payment_method_cod').show();
-                    //     alert('Dear Customer, Your DSR Score is ' + dsr + '. You get Cash on Delivery. Please Submit your order.');
-                    // }else{
-                    //     // $('#payment .payment_method_cod').hide();
-                    //     alert('Dear Customer, Your DSR Score is ' + dsr + '. Please contact our support for more details.');
-                    // }
+                    // console.log('DSR:', dsr);
                 }
             }
         });
