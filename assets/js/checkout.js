@@ -14,11 +14,13 @@ jQuery(function($) {
                     const dsr = parseFloat(response.data.dsr);
                     console.log('DSR:', dsr);
 
-                    if (dsr > 50) {
-                        $('#payment .payment_method_cod').show();
-                    }else{
-                        $('#payment .payment_method_cod').hide();
-                    }
+                    // if (dsr > 50) {
+                    //     // $('#payment .payment_method_cod').show();
+                    //     alert('Dear Customer, Your DSR Score is ' + dsr + '. You get Cash on Delivery. Please Submit your order.');
+                    // }else{
+                    //     // $('#payment .payment_method_cod').hide();
+                    //     alert('Dear Customer, Your DSR Score is ' + dsr + '. Please contact our support for more details.');
+                    // }
                 }
             }
         });
